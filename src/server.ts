@@ -1,14 +1,17 @@
-import express from 'express'; //ESM Ecmascript modules
+import express from 'express'; //ESM
+import cors from 'cors'
+//  Ecmascript modules
 import 'dotenv/config'
 import router from  './router';
 import {connectDB} from './config/db'
-
-
-
-const app = express()
+import { corsConfig } from './config/cors';
 
 connectDB()
 
+const app = express()
+
+//Cors
+app.use(cors(corsConfig))
 app.use(express.json())
 
 app.use('/',router)
